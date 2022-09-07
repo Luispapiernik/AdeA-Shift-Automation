@@ -1,2 +1,3 @@
 # python-project
-This is a template for python projects
+
+Write a project description: Automatization of UdeA shift proccess
