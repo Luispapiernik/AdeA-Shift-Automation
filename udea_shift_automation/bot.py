@@ -1,18 +1,36 @@
-from selenium import webdriver
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.common.keys import Keys
+
+from udea_shift_automation.selenium_client import SeleniumClient
 
 
 class Bot:
     def __init__(self):
-        self.driver = webdriver.Chrome("storage/chromedriver")
-        self.wait_driver = WebDriverWait(self.driver, timeout=10)
+        self.client = SeleniumClient()
 
-    def search_on_youtube(self, query):
-        self.driver.get("https://www.youtube.com")
+    def is_logged_in(self) -> False:
+        return False
 
-        self.wait_driver.until(EC.presence_of_all_elements_located((By.ID, "search")))
+    def log_in(self, *, username: str, password: str) -> bool:
+        self.client.driver.get("https://biblioteca.udea.edu.co/turnosudea/#/")
+        self.client.wait_and_fill(keys=[username], identifier="usuario")
+        self.client.wait_and_fill(keys=[password, Keys.RETURN], identifier="clave")
 
-    def close(self):
-        self.driver.close()
+        return self.is_logged_in()
+
+    def schedule_meeting_room(self, url: str):
+        self.client.driver.get(url)
+
+    def schedule_meeting_room_1(self):
+        self.schedule_meeting_room(
+            url="https://biblioteca.udea.edu.co/turnosudea/#/sala/34/equipo/Sala%201"
+        )
+
+    def schedule_meeting_room_2(self):
+        self.schedule_meeting_room(
+            url="https://biblioteca.udea.edu.co/turnosudea/#/sala/34/equipo/Sala%202"
+        )
+
+    def schedule_meeting_room_3(self):
+        self.schedule_meeting_room(
+            url="https://biblioteca.udea.edu.co/turnosudea/#/sala/34/equipo/Sala%203"
+        )

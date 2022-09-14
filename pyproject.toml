@@ -6,7 +6,7 @@ authors = ["Luis Papiernik <lpapiernik24@gmail.com>"]
 
 [tool.poetry.dependencies]
 python = "^3.8"
-pydantic = "*"
+pydantic = {extras = ["dotenv"], version = "^1.10.2"}
 selenium = "^4.4.3"
 
 [tool.poetry.dev-dependencies]
