@@ -8,7 +8,7 @@ def main():
     bot = Bot()
 
     bot.log_in(username=settings.username, password=settings.password)
-    time.sleep(5)
+    time.sleep(1)
     bot.schedule_meeting_room_1()
     time.sleep(1000)
 
